@@ -1,0 +1,1433 @@
+version: "3.1"
+stories:
+
+- story: happy path
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - intent: appreciated
+  - action: data_point_inform
+  - action: elicitation_form
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: happy path (not appreciated)
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - intent: appreciated
+  - action: data_point_inform
+  - action: elicitation_form
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+  
+- story: happy path (appreciated - continue)
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - intent: appreciated
+  - action: data_point_inform
+  - action: elicitation_form
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: affirm
+  - action: data_point_revisit
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - intent: appreciated
+  - action: data_point_inform
+  - action: elicitation_form
+  - active_loop: null
+  - action: utter_wrap_up
+  - action: utter_slots_values
+  
+- story: happy path (appreciated - continue)
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - intent: not_appreciated
+  - action: data_point_inform
+  - action: elicitation_form
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: affirm
+  - action: data_point_revisit
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - intent: not_appreciated
+  - action: data_point_inform
+  - action: elicitation_form
+  - active_loop: null
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a manager
+  - slot_was_set:
+    - job_function: manager
+  - slot_was_set:
+    - job_function: manager
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I'm getting greatest tasks and perks
+    - requested_slot: importance
+  - slot_was_set:
+    - appreciated: I'm getting greatest tasks and perks
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: I think its important for me
+  - slot_was_set:
+    - importance: I think its important for me
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - job_function: manager
+  - slot_was_set:
+    - appreciated: I'm getting greatest tasks and perks
+  - slot_was_set:
+    - importance: I think its important for me
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_2
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm in europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I work as developer most of the time
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I get the best perks and people to work with
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: people and benefits are imporant to me
+  - slot_was_set:
+    - importance: people and benefits are imporant to me
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - appreciated: I get the best perks and people to work with
+  - slot_was_set:
+    - importance: people and benefits are imporant to me
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_3
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: Im in middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a project manager
+  - slot_was_set:
+    - job_function: project manager
+  - slot_was_set:
+    - job_function: project manager
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I get payed a lot and work with best people
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: because money and people are imporant
+  - slot_was_set:
+    - importance: because money and people are imporant
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - job_function: project manager
+  - slot_was_set:
+    - appreciated: I get payed a lot and work with best people
+  - slot_was_set:
+    - importance: because money and people are imporant
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_second_pass
+  - intent: affirm
+  - action: data_point_revisit
+  - slot_was_set:
+    - appreciated: null
+  - slot_was_set:
+    - importance: null
+  - slot_was_set:
+    - problem: null
+  - slot_was_set:
+    - desired_outcome: null
+  - slot_was_set:
+    - not_appreciated: null
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_4
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm in europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a manager
+  - slot_was_set:
+    - job_function: manager
+  - slot_was_set:
+    - job_function: manager
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: they don't appreciate me at all
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: whole last year I worked overtime
+  - slot_was_set:
+    - problem: whole last year I worked overtime
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - intent: inform
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_5
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm managing south africa
+  - slot_was_set:
+    - region: south africa
+  - slot_was_set:
+    - region: south africa
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I told you I'm a manager
+  - slot_was_set:
+    - job_function: manager
+  - slot_was_set:
+    - job_function: manager
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I hate working for this company
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: whole time nobody listens to me
+  - slot_was_set:
+    - problem: whole time nobody listens to me
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - intent: inform
+  - action: utter_second_pass
+  - intent: affirm
+  - action: data_point_revisit
+  - slot_was_set:
+    - appreciated: null
+  - slot_was_set:
+    - importance: null
+  - slot_was_set:
+    - problem: null
+  - slot_was_set:
+    - desired_outcome: null
+  - slot_was_set:
+    - not_appreciated: null
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: people suck at this company
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: last week they said I was not a team player
+  - slot_was_set:
+    - problem: last week they said I was not a team player
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - intent: inform
+  - action: utter_wrap_up
+  - action: utter_slots_values
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I cover middle east and europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a cto
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: they believe in me
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - appreciated: they believe in me
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - appreciated: they believe in me
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm dedicated on us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm developer
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I have huge salary
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: becase I like money
+  - slot_was_set:
+    - importance: becase I like money
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - appreciated: I have huge salary
+  - slot_was_set:
+    - importance: becase I like money
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: affirm
+  - action: data_point_revisit
+  - slot_was_set:
+    - appreciated: null
+  - slot_was_set:
+    - importance: null
+  - slot_was_set:
+    - problem: null
+  - slot_was_set:
+    - desired_outcome: null
+  - slot_was_set:
+    - not_appreciated: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I'm adequately paid and have many perks
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: because benefits are important
+  - slot_was_set:
+    - importance: because benefits are important
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm located in middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a devops
+  - slot_was_set:
+    - job_function: devops
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: they don't appreciate me at all
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: just last month I told them to start commiting on time
+  - slot_was_set:
+    - problem: just last month I told them to start commiting on time
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - slot_was_set:
+    - desired_outcome: I wouldn't be so angy at the team
+  - slot_was_set:
+    - desired_outcome: I wouldn't be so angy at the team
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I cover europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a cto
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: they believe in me
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - appreciated: they believe in me
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I cover europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a cto
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: they believe in me
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - job_function: cto
+  - slot_was_set:
+    - appreciated: they believe in me
+  - slot_was_set:
+    - importance: when someone believes in me I can do wonders
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_2
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: a devoper
+  - slot_was_set:
+    - job_function: devoper
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I have huge salary
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: becase I like money
+  - slot_was_set:
+    - importance: becase I like money
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - appreciated: I have huge salary
+  - slot_was_set:
+    - importance: becase I like money
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: affirm
+  - action: data_point_revisit
+  - slot_was_set:
+    - appreciated: null
+  - slot_was_set:
+    - importance: null
+  - slot_was_set:
+    - problem: null
+  - slot_was_set:
+    - desired_outcome: null
+  - slot_was_set:
+    - not_appreciated: null
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I'm adequately paid and have many perks
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: because benefits are important
+  - slot_was_set:
+    - importance: because benefits are important
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - intent: why
+  - action: utter_explain_region
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: i'm in us east
+  - slot_was_set:
+    - region: us east
+  - slot_was_set:
+    - region: us east
+  - slot_was_set:
+    - requested_slot: job_function
+  - intent: why
+  - action: utter_explain_job_function
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a devops
+  - slot_was_set:
+    - job_function: devops
+  - slot_was_set:
+    - job_function: devops
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: why
+  - action: utter_explain_appreciated
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I'm not appreciated at all
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: sure, last week guys told me I don't know anything
+  - slot_was_set:
+    - problem: sure, last week guys told me I don't know anything
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - intent: why
+  - action: utter_explain_desired_outcome
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - slot_was_set:
+    - desired_outcome: I would be more productive
+  - slot_was_set:
+    - desired_outcome: I would be more productive
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm in middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - requested_slot: job_function
+  - intent: why
+  - action: utter_explain_job_function
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: ok, I'm a project manager
+  - slot_was_set:
+    - job_function: project manager
+  - slot_was_set:
+    - job_function: project manager
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: why
+  - action: utter_explain_appreciated
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I don't like my job or people I work with
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - intent: why
+  - action: utter_explain_importance
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: ok it was just last month when I worked like a maniac and everybody said I was lazy
+  - slot_was_set:
+    - problem: ok it was just last month when I worked like a maniac and everybody said I was lazy
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - intent: why
+  - action: utter_explain_desired_outcome
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - slot_was_set:
+    - desired_outcome: I would feel better
+  - slot_was_set:
+    - desired_outcome: I would feel better
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_2
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - intent: why
+  - action: utter_explain_region
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: ok, I'm in us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - requested_slot: job_function
+  - intent: why
+  - action: utter_explain_job_function
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: ok, I'm a devops guys
+  - slot_was_set:
+    - job_function: devops
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: why
+  - action: utter_explain_appreciated
+  - action: utter_ask_continue
+  - intent: inform
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: ok, I do feel appreciated
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - intent: why
+  - action: utter_explain_importance
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: simple because I feel that way
+  - slot_was_set:
+    - importance: simple because I feel that way
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - intent: multiple_regions
+  - action: utter_reformulate_multiple_regions
+  - intent: inform
+    entities:
+    - region: us west
+  - slot_was_set:
+    - region: us west
+  - action: elicitation_form
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - requested_slot: job_function
+
+- story: interactive_story_2
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - intent: why
+  - action: utter_explain_region
+  - action: utter_ask_continue
+  - intent: inform
+    entities:
+    - region: us west
+  - slot_was_set:
+    - region: us west
+  - action: elicitation_form
+  - slot_was_set:
+    - region: us west
+  - slot_was_set:
+    - requested_slot: job_function
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm a product manager for canada
+  - slot_was_set:
+    - region: canada
+  - slot_was_set:
+    - job_function: product manager
+  - slot_was_set:
+    - region: canada
+  - slot_was_set:
+    - job_function: product manager
+  - slot_was_set:
+    - requested_slot: appreciated
+#  - intent: confused
+  - or:
+          - intent: confused
+          - intent: no_answer
+  - action: utter_ask_appreciated_reformulate1
+  - intent: affirm
+  - action: utter_ask_appreciated_reformulate2
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: because they give me adequate payment and best tasks
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: because salary and interesting tasks are really important
+  - slot_was_set:
+    - importance: because salary and interesting tasks are really important
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm working in middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - region: middle east
+  - slot_was_set:
+    - requested_slot: job_function
+  - intent: why
+  - action: utter_explain_job_function
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: utter_ask_job_function_reformulate
+  - intent: inform
+    entities:
+    - job_function: developer
+  - slot_was_set:
+    - job_function: developer
+  - action: elicitation_form
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: I have great perks and most interesting tasks
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: because work needs to be interesting
+  - slot_was_set:
+    - importance: because work needs to be interesting
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: I'm in south africa
+  - slot_was_set:
+    - region: south africa
+  - slot_was_set:
+    - region: south africa
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a devops
+  - slot_was_set:
+    - job_function: devops
+  - slot_was_set:
+    - job_function: developer
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: no_answer
+  - action: utter_ask_appreciated_reformulate1
+  - intent: deny
+  - action: utter_ask_appreciated_reformulate2
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: because I hate my boss
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: for the whole last year
+  - slot_was_set:
+    - problem: for the whole last year
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - slot_was_set:
+    - desired_outcome: you mean if I got better boss? Everything would be better
+  - slot_was_set:
+    - desired_outcome: you mean if I got better boss? Everything would be better
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - intent: why
+  - action: utter_explain_job_function
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: 'utter_ask_region_reformulate '
+  - intent: inform
+    entities:
+    - region: europe
+  - slot_was_set:
+    - region: europe
+  - action: elicitation_form
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - requested_slot: job_function
+  - intent: why
+  - action: utter_explain_job_function
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: utter_ask_job_function_reformulate
+  - intent: inform
+    entities:
+    - job_function: janitor
+  - slot_was_set:
+    - job_function: janitor
+  - action: elicitation_form
+  - slot_was_set:
+    - job_function: janitor
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: not_appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: they don't at all
+  - slot_was_set:
+    - not_appreciated: true
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: problem
+  - slot_was_set:
+    - problem: I've been cleaning from the day I got this job and boss always say its not clean enough
+  - slot_was_set:
+    - problem: I've been cleaning from the day I got this job and boss always say its not clean enough
+  - slot_was_set:
+    - requested_slot: desired_outcome
+  - intent: confused
+  - action: utter_explain_desired_outcome
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: utter_ask_desired_outcome_reformulate
+  - intent: inform
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - slot_was_set:
+    - region: im in europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - region: europe
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a student
+  - slot_was_set:
+    - job_function: student
+  - slot_was_set:
+    - job_function: student
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: no_answer
+  - action: utter_ask_appreciated_reformulate1
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: they are nice to me
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: because how people treat you is the most important thing
+  - slot_was_set:
+    - importance: because how people treat you is the most important thing
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values
+
+- story: interactive_story_1
+  steps:
+  - intent: start
+  - action: utter_start_interview
+  - action: elicitation_form
+  - active_loop: elicitation_form
+  - slot_was_set:
+    - requested_slot: region
+  - intent: why
+  - action: utter_explain_region
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: 'utter_ask_region_reformulate '
+  - intent: inform
+    entities:
+    - region: canada
+  - slot_was_set:
+    - region: canada
+  - action: elicitation_form
+  - slot_was_set:
+    - region: canada
+  - slot_was_set:
+    - requested_slot: job_function
+  - slot_was_set:
+    - job_function: I'm a student
+  - slot_was_set:
+    - job_function: student
+  - slot_was_set:
+    - job_function: student
+  - slot_was_set:
+    - requested_slot: appreciated
+  - intent: no_answer
+  - action: utter_ask_appreciated_reformulate1
+  - intent: affirm
+  - action: utter_ask_appreciated_reformulate2
+  - intent: appreciated
+  - action: data_point_inform
+  - slot_was_set:
+    - appreciated: because my boss appreciates me
+  - slot_was_set:
+    - not_appreciated: false
+  - action: elicitation_form
+  - slot_was_set:
+    - requested_slot: importance
+  - slot_was_set:
+    - importance: because human relationship is of the most importance to me
+  - slot_was_set:
+    - importance: because human relationship is of the most importance to me
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_second_pass
+  - intent: deny
+  - action: utter_wrap_up
+  - action: utter_slots_values

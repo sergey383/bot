@@ -1,0 +1,218 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- affirm
+- appreciated:
+    use_entities: []
+- bot_challenge
+- chitchat:
+    use_entities: []
+- confused
+- continue_later
+- deny
+- faq:
+    used_entities:
+    - job_function
+    - region
+    is_retrieval_intent: true
+- inform
+- multiple_regions
+- no_answer
+- not_appreciated:
+    use_entities: []
+- start
+- stop
+- thankyou
+- toxic_language
+- why
+entities:
+- region
+- job_function
+slots:
+  appreciated:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  not_appreciated:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: custom
+  importance:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      intent: inform
+      conditions:
+      - active_loop: elicitation_form
+        requested_slot: importance
+  problem:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      intent: inform
+      conditions:
+      - active_loop: elicitation_form
+        requested_slot: problem
+  desired_outcome:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      intent: inform
+      conditions:
+      - active_loop: elicitation_form
+        requested_slot: desired_outcome
+  region:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      intent: inform
+      conditions:
+      - active_loop: elicitation_form
+        requested_slot: region
+    - type: from_entity
+      entity: region
+  job_function:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      intent: inform
+      conditions:
+      - active_loop: elicitation_form
+        requested_slot: job_function
+    - type: from_entity
+      entity: job_function
+responses:
+  'utter_ask_region_reformulate ':
+  - text: "OK, great we cleared that. Could you, maybe then tell me in which company X's region you work? "
+  utter_ask_desired_outcome_reformulate:
+  - text: ' So, maybe now you have an idea about what else would change for you at Company X?'
+  utter_ask_job_function_reformulate:
+  - text: 'Great! So, can I get your current role? '
+  utter_start_interview:
+  - text: Hi there! I'm Company X-Bot, a new platform “Company X has commissioned to gather insights from employees across the company. Your leadership has asked me to chat with you about your experience working at Company X so they can continue to make improvements to your employee experience.
+  utter_submit:
+  - text: All done!
+  utter_slots_values:
+  - text: |-
+      Here are your answers:
+      Job: {job_function}
+      Region: {region}
+      Appreciated: {appreciated}
+      Problem: {problem}
+      Importance: {importance}
+      Desired outcome: {desired_outcome}
+  utter_noworries:
+  - text: You are welcome :)
+  utter_goodbye:
+  - text: Bye!
+  utter_chitchat:
+  - text: chitchat
+  utter_ask_continue:
+  - text: Do you want to continue the interview?
+  utter_default:
+  - text: Sorry, I didn't understand you, please try input something else
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_problem:
+  - text: Can you please tell me about a specific time when you felt unappreciated or undervalued?
+  utter_ask_desired_outcome:
+  - text: |-
+      Thanks so much for sharing.
+      Let's pretend this was magically solved tomorrow.  Beyond feeling more valued, what else would change for you at Company X?
+  utter_ask_job_function:
+  - text: Great, thanks for that.  How would you describe your current role?
+  utter_ask_region:
+  - text: To get started, in which of company X's regions do you work?
+  utter_ask_appreciated:
+  - text: |-
+      Ok, let's jump in.
+      Generally speaking, can you describe how Company X appreciates you or values you and the work you do?
+  utter_appreciated:
+  - text: That's great, thanks.
+  utter_ask_appreciated_reformulate1:
+  - text: Let's put it this way, do you feel appreciated working for Company X?
+  utter_ask_appreciated_reformulate2:
+  - text: and what would be the main reason why?
+  utter_ask_importance:
+  - text: Why do you feel this is so important to you?
+  utter_importance:
+  - text: That's great, thanks.
+  utter_second_pass:
+  - text: Would you like to keep discussing your experience working at CompanyX?
+  utter_wrap_up:
+  - text: |
+      Well, thanks so much for chatting with me today!
+      I'll get all of your info compiled with your fellow employees to ensure Company X's leadership has a solid perspective from all of its employees.
+  utter_not_appreciated:
+  - text: |-
+      Sorry to hear that.
+      I'd like to know a little more.
+  utter_explain_region:
+  - text: This is important so I can identify when a concern is region-specific to inform the right people about it.
+  utter_explain_job_function:
+  - text: This is important so I can identify when a concern is role-specific so your leadership works with the right people to resolve it.
+  utter_explain_appreciated:
+  - text: Your leadership is interested in hearing as much detail from you about this so they can work on the most critical issues to improve your experience working at Company X.
+  utter_explain_importance:
+  - text: importance is important so I can..
+  utter_explain_problem:
+  - text: problem is important so I can identify..
+  utter_explain_desired_outcome:
+  - text: desired_outcome is important so ...
+  utter_reformulate_multiple_regions:
+  - text: Not a problem, which region is your manager located in?
+  utter_continue_later:
+  - text: No problem, come back any time and we can pick up where we left off.  See you soon!
+  utter_faq/who_analyzes:
+  - text: The analysis team will build a report with the findings and present it to the CEO.
+  utter_faq/take_action:
+  - text: I'll be talking to people this week, and then next week the analysis team will build the report.  It will be presented to the CEO the week after so they can prioritize what to focus on first.
+actions:
+- data_point_inform
+- data_point_revisit
+- pause_conversation
+- utter_appreciated
+- utter_ask_appreciated
+- utter_ask_appreciated_reformulate1
+- utter_ask_appreciated_reformulate2
+- utter_ask_continue
+- utter_ask_desired_outcome_reformulate
+- utter_ask_importance
+- utter_ask_job_function_reformulate
+- utter_ask_region
+- 'utter_ask_region_reformulate '
+- utter_continue_later
+- utter_explain_appreciated
+- utter_explain_desired_outcome
+- utter_explain_importance
+- utter_explain_job_function
+- utter_explain_problem
+- utter_explain_region
+- utter_faq
+- utter_importance
+- utter_not_appreciated
+- utter_noworries
+- utter_reformulate_multiple_regions
+- utter_second_pass
+- utter_slots_values
+- utter_start_interview
+- utter_wrap_up
+- validate_elicitation_form
+forms:
+  elicitation_form:
+    required_slots:
+    - region
+    - job_function
+    - appreciated
+    - importance
+    - problem
+    - desired_outcome

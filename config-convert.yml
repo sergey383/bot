@@ -1,0 +1,36 @@
+language: en
+
+pipeline:
+- name: WhitespaceTokenizer
+- name: ConveRTFeaturizer
+  "model_url": https://convert-model.s3.us-west-2.amazonaws.com/nocontext_tf_model.tar.gz
+- name: CountVectorsFeaturizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: RegexFeaturizer
+- name: LexicalSyntacticFeaturizer
+- name: DIETClassifier
+  random_seed: 666
+  epochs: 60
+  scale_loss: False
+  connection_density: 0.7
+  transformer_size: 512
+  BILOU_flag: True
+- name: ResponseSelector
+  random_seed: 666
+  epochs: 50
+- name: EntitySynonymMapper
+
+policies:
+- name: MemoizationPolicy
+  max_history: 5
+- name: TEDPolicy
+  max_history: 5
+  batch_strategy: balanced
+  epochs: 300 
+  random_seed: 666
+  evaluate_on_num_examples: 0
+  enable_fallback_prediction: False
+- name: RulePolicy

@@ -1,0 +1,44 @@
+version: "3.1"
+rules:
+  # faq
+  - rule: faq
+    steps:
+    - intent: faq
+    - action: utter_faq
+
+  - rule: appreciated form
+    condition:
+    - active_loop: elicitation_form
+    steps:
+    - intent: appreciated
+    - action: data_point_inform
+    - action: elicitation_form
+
+  - rule: not ppreciated
+    steps:
+    - intent: not_appreciated
+    - action: data_point_inform
+
+  - rule: not appreciated form
+    condition:
+    - active_loop: elicitation_form
+    steps:
+    - intent: not_appreciated
+    - action: data_point_inform
+    - action: elicitation_form
+
+  - rule: faq
+    condition:
+    - active_loop: elicitation_form
+    steps:
+    - intent: faq
+    - action: utter_faq
+    - action: elicitation_form
+
+  - rule: continue later
+    condition:
+    - active_loop: elicitation_form
+    steps:
+    - intent: continue_later
+    - action: utter_continue_later
+    - action: pause_conversation

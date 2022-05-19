@@ -1,0 +1,505 @@
+version: "3.1"
+nlu:
+- intent: affirm
+  examples: |
+    - yeah
+    - correct
+    - ye
+    - uh yes
+    - let's do it
+    - um yes
+    - yes knocking
+    - that's correct
+    - yes yes
+    - right
+    - yea
+    - yes
+    - yes right
+    - yes and i dont care
+    - right on
+    - i love that
+    - heck yeah
+    - sure
+    - yes!
+    - yep!
+    - yep
+    - sure!
+    - yes I would
+    - ok
+    - I do
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - are you real?
+- intent: toxic_language
+  examples: |
+    - wtf
+    - asshole
+    - you are full of shit
+    - you are an asshole
+- intent: chitchat
+  examples: |
+    - what's up??
+    - i want to get to know your owner
+    - who are you
+    - i want to know the company which generated you
+    - i want to know the company which invented you
+    - i want to know who invented you
+    - May I ask who invented you?
+    - who created you
+    - please tell me who created you
+    - tell me more about your creators
+    - tell me more about your founders
+    - Ahoy matey how are you?
+    - are you alright
+    - are you having a good day
+    - Are you ok?
+    - are you okay
+    - Do you feel good?
+    - how are things going
+    - how are things with you?
+    - How are things?
+    - how are you
+    - how are you doing
+    - how are you doing this morning
+    - how are you feeling
+    - how are you today
+    - How are you?
+    - How is the weather today?
+    - What's the weather like?
+    - How is the weather?
+    - What is the weather at your place?
+    - Do you have good weather?
+    - Is it raining?
+    - What's it like out there?
+    - Is it hot or cold?
+    - Beautiful day, isn't it?
+    - What's the weather forecast?
+    - Is it quite breezy outside?
+- intent: why
+  examples: |
+    - Why?
+    - Why do you need that?
+    - What for?
+    - How are you going to use it?
+    - Tell me why
+    - I don't see why I should tell you
+    - Why do you need my region?
+    - Why should I tell you?
+    - Why should I tell you my region?
+    - What do you need my region for?
+    - Why do you need my role?
+    - Why should I tell you my role?
+    - What do you need my role for?
+    - why do you need it
+    - why?
+    - why should I tell you
+    - what's the point
+    - what will you use it for
+    - not sure what is the point
+    - again not sure what is the point
+    - why do you ask
+    - why
+    - whats the point
+    - why do you need all of this
+    - not sure why do you need this
+    - why do you need that
+- intent: deny
+  examples: |
+    - no
+    - no new selection
+    - no thanks
+    - no thank you
+    - uh no
+    - breath no
+    - do you have something else
+    - no this does not work for me
+    - nope
+    - nah
+    - not realy
+    - no need
+    - not really
+    - no need to
+    - not really no
+- intent: start
+  examples: |
+    - ok let's start
+    - start interview
+    - we can start now
+    - lets go
+    - ok, lets start the interview
+    - I see, let's start
+    - we can start
+    - start
+- intent: inform
+  examples: |
+    - I am a [Data Scientist](job_function)
+    - I am a [data scientist](job_function)
+    - I am responsible for our [innovation department](job_function)
+    - I work in [Europe](region) as [Head of Innovation](job_function)
+    - I work as a [frontend dev](job_function)
+    - I work as a [project manager](job_function)
+    - I work in the [us east](region) as [Head of Innovation](job_function)
+    - I work the [europe](region)
+    - I'm in [us west](region)
+    - I work in [us east](region)
+    - I work for the AI research group of the turing centre of the Vancouver [Canada](region)
+    - I work for the [New York Times](region)
+    - I work for the [new york times](region)
+    - I work in [innovation](job_function)
+    - I work in [project management](job_function)
+    - I'm [project manager](job_function)
+    - I'm a [bot developer](job_function)
+    - I'm a [business woman](job_function)
+    - I'm a [construction worker](job_function)
+    - I'm a [conversation designer](job_function)
+    - I'm a [developer](job_function)
+    - I'm a [full stack developer](job_function)
+    - I'm a [janitor](job_function)
+    - I'm a [machine learning engineer](job_function)
+    - I'm a [product manager](job_function)
+    - I'm a [software engineer](job_function)
+    - I'm a [student](job_function)
+    - I'm a bot [developer](job_function)
+    - I'm a real good [engineer](job_function)
+    - I'm an [AI researcher](job_function)
+    - I'm an [engineer](job_function)
+    - I'm in [business](job_function)
+    - I'm in [project mgmt](job_function)
+    - I'm the [boss](job_function)
+    - I'm the [developer](job_function)
+    - I'm the [lead engineer](job_function)
+    - Im a [full stack developer](job_function)
+    - my function is [to serve butter](job_function)
+    - my job function is [developer](job_function)
+    - [US East](region)
+    - [AI engieer](job_function)
+    - [AI researcher](job_function)
+    - at [US West](region)
+    - I'm at [us east](region)
+    - [Africa](region)
+    - [Asia Pacific](region)
+    - [Middle East](region)
+    - I'm the [CEO](job_function) for the [Canada](region) region
+    - [COO](job_function) at [Middle East](region)
+    - [South Africa](region)
+    - [CTO](job_function)
+    - I'm in [europe](region)
+    - [Developer Advocate](job_function)
+    - I'm a [Developer](job_function)
+    - I'm the [manager](job_function) of the [us east](region) region
+    - [Full Stack](job_function)
+    - I'm a [devopps](job_function)
+    - [Europe](region)
+    - [I am a freelancer](job_function)
+    - [South America](region)
+    - [IT manager](job_function)
+    - J_Herrera@gmail.com
+    - I'm an [IT manager](job_function) in [europe] (region)
+    - [Owner](job_function)
+    - I'm [Product Manager](job_function)
+    - my region is [US West](region)
+    - in the [US West](region)
+    - I'm [developer](job_function)
+    - its very important to me because it is
+    - its important to mea
+    - because it is
+    - its important
+    - becase I care about enviroment
+    - simple it means a lot to me
+    - just it means a lot
+    - I"m [ceo](job_function) in [us west](region)
+    - I'm [ceo](job_function) in [us west](region)
+    - I work in [europe](region)
+    - I'm in [project management](job_function)
+    - last week when guys said I don't know my stuff
+    - I'm in [south africa](region)
+    - I mostly developing stuff
+    - last month he called me stupid
+    - [middle east](region) mostly
+    - mostly [product management](job_function)
+    - the whole last year I worked really hard, but people didn't appreciate it
+    - I like those things :)
+    - In [us west](region)
+    - [devops](job_function)
+    - because I like spending money
+    - I'm [us east](region)
+    - I like my free time :)
+    - I'm [software developer](job_function)
+    - I like free stuff :)
+    - I'm in [asia](region)
+    - I work as a [janitor](job_function)
+    - they say its not clean and I bust my ass every day
+    - last few days is the worst
+    - I clean all day for nothing
+    - [pacific](region) region
+    - I'm a [full stack]{"entity": "job_function", "value": "stack"}
+    - I like work benefits
+    - it helps my self esteem
+    - I'm a [develper](job_function)
+    - it's the wole time actually
+    - last week for example, everyone said I'm not working well
+    - I'm a [ai researcher](job_function)
+    - I think its important to have great people at work
+    - I'm [ceo](job_function)
+    - I think money is important
+    - I'm [us west](region)
+    - I'm a [manager](job_function)
+    - I think its important for me
+    - I work as [developer](job_function) most of the time
+    - people and benefits are imporant to me
+    - Im in [middle east](region)
+    - I'm a [project manager](job_function)
+    - because money and people are imporant
+    - whole last year I worked overtime
+    - if bosses would change their approach
+    - I'm managing [south africa](region)
+    - I told you I'm a [manager](job_function)
+    - whole time nobody listens to me
+    - If people started to listen it would be better for all of us
+    - last week they said I was not a team player
+    - if they would only listen
+    - I cover [middle east](region) and [europe](region)
+    - I'm a [cto](job_function)
+    - when someone believes in me I can do wonders
+    - I'm dedicated on [us west](region)
+    - becase I like money
+    - because benefits are important
+    - I'm located in [middle east](region)
+    - I'm a [devops](job_function)
+    - just last month I told them to start commiting on time
+    - I wouldn't be so angy at the team
+    - I cover [europe](region)
+    - [us west](region)
+    - a [devoper](job_function)
+    - i'm in [us east](region)
+    - sure, last week guys told me I don't know anything
+    - I would be more productive
+    - I'm in [middle east](region)
+    - ok it was just last month when I worked like a maniac and everybody said I was lazy
+    - I would feel better
+    - ok I'm a [devops](job_function) guys
+    - simple because I feel that way
+    - he is in [us west](region)
+    - I'm a [ceo](job_function)
+    - ok, I'm in [us west](region)
+    - I'm a [product manager](job_function) for [canada](region)
+    - because salary and interesting tasks are really important
+    - I'm working in [middle east](region)
+    - yes, I'm a [developer](job_function)
+    - because work needs to be interesting
+    - for the whole last year
+    - you mean if I got better boss? Everything would be better
+    - I've been cleaning from the day I got this job and boss always say its not clean enough
+    - everything would be better for me
+    - im in [europe](region)
+    - because how people treat you is the most important thing
+    - I'm in [canada](region)
+    - I'm a [student](job_function)
+    - because human relationship is of the most importance to me
+- intent: stop
+  examples: |
+    - ok then you cant help me
+    - that was shit, you're not helping
+    - you can't help me
+    - you can't help me with what i need
+    - i guess you can't help me then
+    - ok i guess you can't help me
+    - that's not what i want
+    - ok, but that doesnt help me
+    - this is leading to nothing
+    - this conversation is not really helpful
+    - you cannot help me with what I want
+    - I think you cant help me
+    - hm i don't think you can do what i want
+    - stop
+    - stop go back
+    - do you get anything?
+    - and you call yourself bot company? pff
+    - and that's it?
+    - nothing else?
+    - I want to stop
+    - quit
+    - sotp
+- intent: thankyou
+  examples: |
+    - um thank you good bye
+    - okay cool uh good bye thank you
+    - okay thank you good bye
+    - you rock
+    - and thats all thank you and good bye
+    - thank you and good bye
+    - sorry about my mistakes thank you good bye
+    - noise thank you good bye
+    - thank you goodbye noise
+    - okay thank you goodbye
+    - uh thank you good bye
+    - thank you goodbye
+    - thank you goodbye noise thank you goodbye
+    - breath thank you goodbye
+    - thank you
+    - okay thank you
+    - thanks goodbye
+    - ah thank you goodbye
+    - thank you noise
+    - thank you good bye
+    - breath thank you very much goodbye
+    - thanks
+    - noise thank you goodbye
+    - unintelligible thank you goodbye
+    - uh okay thank you good bye
+    - thank you bye
+    - um okay thank you good bye
+    - cool thanks
+- intent: appreciated
+  examples: |
+    - I feel appreciated
+    - I have great job perks and get to travel a lot
+    - company appreciates me
+    - I feel valuable
+    - make me feel valuable
+    - I really feel appreciated and understood
+    - my workplace and colleagues are great
+    - I mean job is great
+    - I have great boss and colleagues
+    - working for this company makes me feel like a part of the family
+    - eveything is just great
+    - Company X is the best place to work at
+    - I'm appreciated
+    - they give me a lot of money
+    - they give me lot of free time
+    - there are many nice perks
+    - there's a long list of employee benefits and perks
+    - I'm appreciated enough
+    - I get adequately paid and people are nice
+    - i'm adequately paid
+    - I'm getting greatest tasks and perks
+    - I get the best perks and people to work with
+    - I get payed a lot and work with best people
+    - I'm paid adequately and work with best of my colleagues
+    - they believe in me
+    - I have huge salary
+    - I'm adequately paid and have many perks
+    - ok I do feel appreciated
+    - because they give me adequate payment and best tasks
+    - I have great perks and most interesting tasks
+    - they are nice to me
+    - because my boss appreciates me
+- intent: not_appreciated
+  examples: |
+    - I'm not appreciated enough
+    - I hate my job
+    - this job is the worst
+    - I don't feel valuable at all
+    - make me fedd valuable
+    - I really do not feel appreciated
+    - my colleagues hate me
+    - I have the worst boss and colleagues
+    - working for this company makes me sad
+    - eveything is just crap
+    - its a dumb job
+    - it's such a shitty workplace
+    - I don't like my boss
+    - not sure they do
+    - not enough for sure
+    - they do not
+    - they don't actually
+    - they simple do not appreciate my work
+    - they don't appreciate me at all
+    - I hate working for this company
+    - people suck at this company
+    - I'm not appreciated at all
+    - I don't like my job or people I work with
+    - because I hate my boss
+    - they don't at all
+- intent: multiple_regions
+  examples: |
+    - What if I work in two regions?
+    - I work in two regions
+    - What if I am in more than one region?
+    - I am in more than one region
+    - I'm in multiple regions
+    - I split my time between two regions
+    - What if I split my time between two regions?
+    - What if I split my time between multiple regions?
+    - I work in multiple regions
+- intent: confused
+  examples: |
+    - not sure what you mean
+    - can you explain it better
+    - What do you mean
+    - I am not sure I understand
+    - what are you talking about
+    - what are you saying
+    - not sure I get it
+    - explain please
+    - can you clarify
+    - can you elaborate
+    - explain it to me
+    - i want more information
+    - please elaborate
+    - please explain
+    - give me more details
+    - i don't get the question
+    - can you elaborate this question?
+    - what are you asking actually?
+    - what do you mean
+- intent: no_answer
+  examples: |
+    - I don't know
+    - I really don't have an answer
+    - don't know
+    - not sure
+    - hm don't know
+    - not sure what to say
+    - this is a hard one
+    - don't have an answer
+    - can't say
+    - honestly don't know
+    - not sure how to reply
+    - don't have a clue
+    - don't have an anwser to that question
+    - don't know actually
+- intent: continue_later
+  examples: |
+    - Can I come back later to finish this up?
+    - Can I finish this later?
+    - I don't have time to do this now
+    - Can we talk later?
+    - I'd like to finish this later
+    - I am busy now
+- intent: faq/who_analyzes
+  examples: |
+    - Who is going to look at this data?
+    - Who will to look at this data?
+    - Who is going to see this data?
+    - Who will see this data?
+    - Who is responsible for looking at this survey data?
+    - Who will make sense of this data?
+    - Who will analyze this data?
+- intent: faq/take_action
+  examples: |
+    - When will someone take action on this input?
+    - When will things improve?
+    - How long do I have to wait for something to be done?
+    - How long do I have to wait for my concerns to be addressed?
+    - When will someone do something about my input?
+- synonym: stack
+  examples: |
+    - full stack
+    - fullstack
+    - full
+    - Full stack
+    - full staclk
+    - full framework
+    - Full
+    - Full Stack
+- synonym: US
+  examples: |
+    - USA
+    - United States
+    - U.S.
+    - usa
